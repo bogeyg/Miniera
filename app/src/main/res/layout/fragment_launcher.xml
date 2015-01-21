@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#80000000"
+                tools:context=".MainActivity$LauncherFragment">
+
+    <GridView
+            android:id = "@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnWidth="90dp"
+            android:numColumns="4"
+            android:layout_marginLeft="5dp"
+            android:verticalSpacing="25dp"
+            android:stretchMode="spacingWidthUniform"
+            android:layoutAnimation="@anim/layout_fade"
+            android:gravity="center"
+            />
+    <fr.castorflex.android.circularprogressbar.CircularProgressBar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id = "@+id/progress_view"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:indeterminate="true"
+            app:cpb_color="#e91e63"
+            app:cpb_colors="@array/material_colors"
+            app:cpb_rotation_speed="1.0"
+            app:cpb_sweep_speed="1.0"
+            app:cpb_stroke_width="3dp"
+            app:cpb_min_sweep_angle="10"
+            app:cpb_max_sweep_angle="300"
+            android:layout_centerInParent="true"
+            />
+
+</RelativeLayout>

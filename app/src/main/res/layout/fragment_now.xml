@@ -1,0 +1,126 @@
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:columnCount="2"
+                android:layoutAnimation="@anim/layout_random_fade"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="70dp"
+                tools:context=".MainActivity$NowFragment">
+
+    <RelativeLayout android:layout_width="160dp" android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:background="#60000000">
+
+        <fr.castorflex.android.circularprogressbar.CircularProgressBar
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id = "@+id/progress_weather"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:indeterminate="true"
+                app:cpb_color="#fff"
+                app:cpb_rotation_speed="1.0"
+                app:cpb_sweep_speed="1.0"
+                app:cpb_stroke_width="2dp"
+                app:cpb_min_sweep_angle="10"
+                app:cpb_max_sweep_angle="300"
+                android:layout_centerInParent="true"
+                />
+
+    <TextView
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:includeFontPadding="false"
+            android:layout_marginTop="-11dp"
+
+            android:textSize="73sp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:textSize="@dimen/abc_text_size_small_material"
+            android:layout_marginTop="-10dp"
+            android:includeFontPadding="false"
+            android:id="@+id/temperature_desc"
+            android:layout_below="@+id/temperature"/>
+    <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:textSize="@dimen/abc_text_size_small_material"
+            android:layout_marginTop="0dp"
+            android:includeFontPadding="false"
+            android:layout_below="@+id/temperature_desc"/>
+    </RelativeLayout>
+
+
+
+    <RelativeLayout android:layout_width="160dp" android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_row="0"
+                    android:layout_gravity="right"
+                    android:background="#60000000">
+        <ListView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/notification_widget_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="0dp">
+        </ListView>
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_columnSpan="2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_marginTop="8dp"
+            android:background="#60000000">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:text="TO-DO"
+                android:padding="8dp"
+                android:includeFontPadding="false"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"/>
+
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:text="+"
+                android:padding="8dp"
+                android:layout_alignParentTop="true"
+                android:id="@+id/todo_add_text"
+                android:layout_alignParentRight="true"/>
+
+
+        <ListView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/todo_widget_list"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@+id/todo_add_text"
+                android:listSelector="@android:color/transparent"
+                android:layout_marginBottom="150dp"
+                android:padding="0dp">
+
+        </ListView>
+
+    </RelativeLayout>
+
+</GridLayout>
