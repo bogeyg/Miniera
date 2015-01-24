@@ -15,7 +15,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
             android:id="@+id/textView"
-            android:layout_below="@+id/authButton"
             android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
