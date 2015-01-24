@@ -16,10 +16,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.*;
 import android.widget.*;
-import com.artincodes.miniera.fragments.LauncherFragment;
-import com.artincodes.miniera.fragments.NavigationDrawerFragment;
-import com.artincodes.miniera.fragments.NowFragment;
-import com.artincodes.miniera.fragments.SocialFragment;
+import com.artincodes.miniera.fragments.*;
 import com.artincodes.miniera.utils.ImageAdapter;
 import com.facebook.AppEventsLogger;
 import com.google.android.gms.common.ConnectionResult;
@@ -239,9 +236,14 @@ public class MainActivity extends ActionBarActivity
 
         FragmentManager fragmentManager = getFragmentManager();
         switch (position) {
-            case 0:
+            case 1:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, NowFragment.newInstance(position + 1))
+                        .commit();
+                break;
+            case 0:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, MusicFragment.newInstance(position + 1))
                         .commit();
                 break;
             case 3:
@@ -397,8 +399,8 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onLocationChanged(Location location) {
 
-        NowFragment fragment = (NowFragment) getFragmentManager().findFragmentById(R.id.container);
-        fragment.setWeather(location);
+//        NowFragment fragment = (NowFragment) getFragmentManager().findFragmentById(R.id.container);
+//        fragment.setWeather(location);
 
     }
 

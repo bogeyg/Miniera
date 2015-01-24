@@ -31,4 +31,5 @@ dependencies {
     compile 'com.google.android.gms:play-services:+'
     compile 'me.drakeet.materialdialog:library:1.2.2'
     compile 'com.facebook.android:facebook-android-sdk:3.21.1'
+    compile files('libs/remote-metadata-provider.jar','libs/remote-metadata-provider-v18.jar')
 }

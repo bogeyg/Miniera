@@ -9,10 +9,27 @@
                 android:layout_marginTop="?attr/actionBarSize"
                 tools:context=".MainActivity$HomeFragment">
 
-    <TextView
-            android:id="@+id/section_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World"/>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#60000000">
+        <ImageView android:layout_width="100dp"
+                   android:layout_height="100dp"
+                   android:layout_alignParentLeft="true"
+                   android:id="@+id/imageArtWork"
+                   android:scaleType="centerCrop"
+                   android:src="@drawable/pp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/abc_text_size_medium_material"
+                android:text="Medium Text"
+                android:id="@+id/textView2"
+                android:layout_margin="8dp"
+                android:textColor="#fff"
+                android:layout_toRightOf="@+id/imageArtWork"
+                android:layout_alignParentTop="true"
+                />
+
+    </RelativeLayout>
 
 </RelativeLayout>
