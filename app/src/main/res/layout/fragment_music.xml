@@ -13,13 +13,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/layoutMetadata"
+            android:paddingBottom="?attr/actionBarSize"
             android:background="#60000000">
         <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignParentLeft="true"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
                 android:id="@+id/imageArtWork"
                 android:scaleType="centerCrop"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="?attr/actionBarSize"
                 android:src="@drawable/pp"/>
         <TextView
                 android:layout_width="wrap_content"
@@ -27,21 +30,12 @@
                 android:textSize="@dimen/abc_text_size_medium_material"
                 android:text="Medium Text"
                 android:id="@+id/textTitle"
-                android:layout_margin="8dp"
-                android:textColor="#fff"
-                android:layout_toRightOf="@+id/imageArtWork"
-                android:layout_alignParentTop="true"
-                />
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/abc_text_size_small_material"
-                android:text="Medium Text"
-                android:id="@+id/textArtist"
                 android:layout_marginLeft="8dp"
-                android:layout_below="@+id/textTitle"
+                android:layout_marginRight="8dp"
+                android:singleLine="true"
                 android:textColor="#fff"
-                android:layout_toRightOf="@+id/imageArtWork"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/imageArtWork"
                 />
         <TextView
                 android:layout_width="wrap_content"
@@ -50,9 +44,24 @@
                 android:text="Medium Text"
                 android:id="@+id/textAlbum"
                 android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:singleLine="true"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/textTitle"
                 android:textColor="#fff"
-                android:layout_below="@+id/textArtist"
-                android:layout_toRightOf="@+id/imageArtWork"
+                />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/abc_text_size_small_material"
+                android:text="Medium Text"
+                android:id="@+id/textArtist"
+                android:textColor="#fff"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:singleLine="true"
+                android:layout_below="@+id/textAlbum"
                 />
 
 
@@ -70,13 +79,16 @@
         <ImageView android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_margin="8dp"
+                   android:id="@+id/buttonPrev"
                 android:src="@drawable/ic_skip_previous"/>
         <ImageView android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                android:src="@drawable/ic_play"/>
+                android:src="@drawable/ic_play"
+                android:id="@+id/buttonPlay"/>
         <ImageView android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_margin="8dp"
+                   android:id="@+id/buttonNext"
                    android:src="@drawable/ic_skip_next"/>
 
     </LinearLayout>
