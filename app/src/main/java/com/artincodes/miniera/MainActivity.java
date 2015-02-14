@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -30,7 +31,6 @@ import java.util.Date;
 import java.util.Locale;
 
 
-
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
@@ -40,9 +40,6 @@ public class MainActivity extends ActionBarActivity
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-
-//    FloatingActionsMenu floatingActionsMenu;
-
     private GoogleApiClient mGoogleApiClient;
 
     PackageManager packageManager;
@@ -51,31 +48,22 @@ public class MainActivity extends ActionBarActivity
 
     BroadcastReceiver _broadcastReceiver;
     private final SimpleDateFormat _sdfWatchTime = new SimpleDateFormat("h:mm,EEEEEEEEE,d MMMMMM", Locale.US);
-
-
-
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
     private CharSequence mTitle;
-
     TextView textTime;
     TextView textDay;
     TextView textDate;
     ImageView wallpaperImage;
     FragmentManager fragmentManager;
     FrameLayout container;
-
     public static GridView dockGrid;
-
-    public static String[] launchIntentStr ={
+    public static ImageView dragIcon;
+    public static String[] launchIntentStr = {
             null,
             null,
             null,
             null,
             null
     };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,11 +75,11 @@ public class MainActivity extends ActionBarActivity
 
         setContentView(R.layout.activity_main);
 
+//        Toast.makeText(getApplicationContext(), Build.VERSION.SDK_INT+"",Toast.LENGTH_SHORT).show();
+
         final ActionBar actionBar = getSupportActionBar();
-
-
-//        floatingActionsMenu = (FloatingActionsMenu)findViewById(R.id.floatingActionMenu);
-        dockGrid = (GridView)findViewById(R.id.app_drawer);
+        dragIcon = (ImageView) findViewById(R.id.dragIcon);
+        dockGrid = (GridView) findViewById(R.id.app_drawer);
         dockGrid.setAdapter(new ImageAdapter(getBaseContext()));
         dockGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -110,10 +98,9 @@ public class MainActivity extends ActionBarActivity
 
                         fragmentManager = getFragmentManager();
 
-                        if (fragmentManager.getBackStackEntryCount()== 0) {
+                        if (fragmentManager.getBackStackEntryCount() == 0) {
                             //Toast.makeText(getBaseContext(),fragmentManager.getBackStackEntryCount()+"",Toast.LENGTH_SHORT).show();
                             //Toast.makeText(getApplicationContext(),"Hello",Toast.LENGTH_SHORT).show();
-
 
 
                             fragmentManager.beginTransaction()
@@ -122,13 +109,6 @@ public class MainActivity extends ActionBarActivity
                                     .commit();
                             actionBar.hide();
                             dockGrid.setVisibility(View.GONE);
-//                            floatingActionsMenu.setVisibility(View.INVISIBLE);
-                            //LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                            //      LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT, 1.0f);
-                            //container.setLayoutParams(lp);
-
-                            //Toast.makeText(getBaseContext(),getFragmentManager().getBackStackEntryCount()+"",Toast.LENGTH_LONG).show();
-                            //this.finish();
 
                         }
                         break;
@@ -156,7 +136,6 @@ public class MainActivity extends ActionBarActivity
                 .addOnConnectionFailedListener(this)
                 .build();
 
-        //launcherImageLast = (ImageView) findViewById(R.id.launcher_image_last);
         mGoogleApiClient.connect();
 
         dropIcon = new ImageView(this);
@@ -209,12 +188,12 @@ public class MainActivity extends ActionBarActivity
 
     private void launchApp(String currentLaunchIntent) {
 
-        if (currentLaunchIntent!=null){
+        if (currentLaunchIntent != null) {
             Intent launchIntent = packageManager.getLaunchIntentForPackage(currentLaunchIntent);
             getApplicationContext().startActivity(launchIntent);
 
-        }else{
-            Toast.makeText(getBaseContext(),"Room Empty",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getBaseContext(), "Room Empty", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -232,19 +211,22 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-
-
         FragmentManager fragmentManager = getFragmentManager();
         switch (position) {
-            case 1:
+            case 0:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, NowFragment.newInstance(position + 1))
                         .commit();
                 break;
-            case 0:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, MusicFragment.newInstance(position + 1))
-                        .commit();
+            case 2:
+                if (Build.VERSION.SDK_INT < 18)
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, MusicFragment.newInstance(position + 1))
+                            .commit();
+                else
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, MusicFragmentv18.newInstance(position + 1))
+                            .commit();
                 break;
             case 3:
                 fragmentManager.beginTransaction()
@@ -399,8 +381,8 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onLocationChanged(Location location) {
 
-//        NowFragment fragment = (NowFragment) getFragmentManager().findFragmentById(R.id.container);
-//        fragment.setWeather(location);
+        NowFragment fragment = (NowFragment) getFragmentManager().findFragmentById(R.id.container);
+        fragment.setWeather(location);
 
     }
 

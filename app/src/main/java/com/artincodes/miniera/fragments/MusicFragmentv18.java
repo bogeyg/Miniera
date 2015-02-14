@@ -15,14 +15,14 @@ import android.widget.Toast;
 import com.artincodes.miniera.MainActivity;
 import com.artincodes.miniera.R;
 import com.artincodes.miniera.utils.BlurBuilder;
-import com.woodblockwithoutco.remotemetadataprovider.media.RemoteMetadataProvider;
-import com.woodblockwithoutco.remotemetadataprovider.media.enums.MediaCommand;
-import com.woodblockwithoutco.remotemetadataprovider.media.enums.PlayState;
-import com.woodblockwithoutco.remotemetadataprovider.media.listeners.OnArtworkChangeListener;
-import com.woodblockwithoutco.remotemetadataprovider.media.listeners.OnMetadataChangeListener;
-import com.woodblockwithoutco.remotemetadataprovider.media.listeners.OnPlaybackStateChangeListener;
+import com.woodblockwithoutco.remotemetadataprovider.v18.media.RemoteMetadataProvider;
+import com.woodblockwithoutco.remotemetadataprovider.v18.media.enums.MediaCommand;
+import com.woodblockwithoutco.remotemetadataprovider.v18.media.enums.PlayState;
+import com.woodblockwithoutco.remotemetadataprovider.v18.media.listeners.OnArtworkChangeListener;
+import com.woodblockwithoutco.remotemetadataprovider.v18.media.listeners.OnMetadataChangeListener;
+import com.woodblockwithoutco.remotemetadataprovider.v18.media.listeners.OnPlaybackStateChangeListener;
 
-public  class MusicFragment extends Fragment {
+public  class MusicFragmentv18 extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -47,15 +47,15 @@ public  class MusicFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static MusicFragment newInstance(int sectionNumber) {
-        MusicFragment fragment = new MusicFragment();
+    public static MusicFragmentv18 newInstance(int sectionNumber) {
+        MusicFragmentv18 fragment = new MusicFragmentv18();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public MusicFragment() {
+    public MusicFragmentv18() {
     }
 
     @Override
@@ -105,14 +105,17 @@ public  class MusicFragment extends Fragment {
         });
 
         mProvider.setOnPlaybackStateChangeListener(new OnPlaybackStateChangeListener() {
+
+
             @Override
-            public void onPlaybackStateChanged(PlayState playState) {
-                //Toast.makeText(getActivity(),playState.toString(),Toast.LENGTH_LONG).show();
+            public void onPlaybackStateChanged(PlayState playState, long l, float v) {
+
                 if (playState.toString().equals("PLAYING")){
                     buttonPlay.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause));
                 }else {
                     buttonPlay.setImageDrawable(getResources().getDrawable(R.drawable.ic_play));
                 }
+
             }
         });
 

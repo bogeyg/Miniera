@@ -171,6 +171,10 @@ public class DrawerLongClickListener implements OnItemLongClickListener {
         });
         mMaterialDialog.show();
 
+
+//        MainActivity.dragIcon.setImageDrawable(pacsForAdapter[position].icon);
+//        MainActivity.dockGrid.setVisibility(View.VISIBLE);
+
         moreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
