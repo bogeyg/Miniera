@@ -1,6 +1,5 @@
 package com.artincodes.miniera;
 
-import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +11,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -53,7 +54,6 @@ public class MainActivity extends ActionBarActivity
     TextView textDay;
     TextView textDate;
     ImageView wallpaperImage;
-    FragmentManager fragmentManager;
     FrameLayout container;
     public static GridView dockGrid;
     public static ImageView dragIcon;
@@ -96,17 +96,16 @@ public class MainActivity extends ActionBarActivity
                         break;
                     case 2:
 
-                        fragmentManager = getFragmentManager();
+                        FragmentManager fragmentManager;
+
+
+                        fragmentManager = getSupportFragmentManager();
 
                         if (fragmentManager.getBackStackEntryCount() == 0) {
-                            //Toast.makeText(getBaseContext(),fragmentManager.getBackStackEntryCount()+"",Toast.LENGTH_SHORT).show();
-                            //Toast.makeText(getApplicationContext(),"Hello",Toast.LENGTH_SHORT).show();
-
-
-                            fragmentManager.beginTransaction()
-                                    .replace(R.id.container, LauncherFragment.newInstance(position + 1))
-                                    .addToBackStack(null)
-                                    .commit();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.container, LauncherFragment.newInstance(position + 1));
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
                             actionBar.hide();
                             dockGrid.setVisibility(View.GONE);
 
@@ -173,11 +172,12 @@ public class MainActivity extends ActionBarActivity
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 1;
 
-        //final Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_wallpaper, options);
+        //Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_wallpaper, options);
 
+        //Bitmap wallBitmap = BlurBuilder.fastblur(bmp,12);
         wallpaperImage.setImageDrawable(getWallpaper());
 
-        //wallpaperImage.setImageBitmap(bmp);
+//        wallpaperImage.setImageBitmap(bmp);
 
         //buttonLauncher = (ImageView) findViewById(R.id.button_launcher);
 
@@ -211,11 +211,16 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         switch (position) {
             case 0:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, NowFragment.newInstance(position + 1))
+                        .commit();
+                break;
+            case 1:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, TodayFragment.newInstance(position + 1))
                         .commit();
                 break;
             case 2:
@@ -297,7 +302,7 @@ public class MainActivity extends ActionBarActivity
             this.finish();
             //getFragmentManager().popBackStackImmediate();
         } else {
-            getFragmentManager().popBackStack();
+            //getFragmentManager().popBackStack();
             getSupportActionBar().show();
             dockGrid.setVisibility(View.VISIBLE);
 //            floatingActionsMenu.setVisibility(View.VISIBLE);
@@ -381,7 +386,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onLocationChanged(Location location) {
 
-        NowFragment fragment = (NowFragment) getFragmentManager().findFragmentById(R.id.container);
+        NowFragment fragment = (NowFragment) getSupportFragmentManager().findFragmentById(R.id.container);
         fragment.setWeather(location);
 
     }

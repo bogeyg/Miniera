@@ -29,6 +29,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.github.castorflex.smoothprogressbar:library-circular:1.0.1'
     compile 'com.google.android.gms:play-services:+'
+    compile 'com.getbase:floatingactionbutton:1.7.0'
     compile 'me.drakeet.materialdialog:library:1.2.2'
     compile 'com.facebook.android:facebook-android-sdk:3.21.1'
     compile files('libs/remote-metadata-provider.jar','libs/remote-metadata-provider-v18.jar')

@@ -1,7 +1,7 @@
 package com.artincodes.miniera.fragments;
 
 import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Typeface;
@@ -188,31 +188,17 @@ public class NowFragment extends Fragment {
     private void updateTodoUI() {
 
         c = todoDBHelper.getData();
-
         c.moveToFirst();
-
         int i=0;
-
         String tasks [] = new String[c.getCount()];
-
-
-
-
         while (!c.isAfterLast()){
             tasks[i]= c.getString(1);
             c.moveToNext();
             i++;
-            //Toast.makeText(getActivity(),optionTest[i],Toast.LENGTH_SHORT).show();
-
-
         }
-
-
         ToDoListAdapter toDoListAdapter;
         toDoListAdapter = new ToDoListAdapter(getActivity(), tasks);
-
         listViewToDo.setAdapter(toDoListAdapter);
-
     }
 
     @Override
@@ -234,8 +220,6 @@ public class NowFragment extends Fragment {
                 "num_of_days=1&" +
                 "includelocation=yes&" +
                 "key="+API_KEY;
-
-
         client.get(URL, new AsyncHttpResponseHandler() {
 
             @Override
